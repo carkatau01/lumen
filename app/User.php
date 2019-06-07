@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name'
+        'username', 'password'
     ];
 
     /**
@@ -29,6 +29,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'created_at', 'updated_at'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class,  'id');
+    }
 }
